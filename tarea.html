@@ -1,0 +1,73 @@
+<html>
+
+<body>
+
+    <script>
+        class Probabilidad {
+            prob() {
+                return Math.floor(Math.random() * 100) + 1;
+            }
+
+        }
+        class Tortuga {
+            constructor(nombre) {
+                this.nombre = nombre;
+                this.posicion = 0;
+                this.prot = new Probabilidad();
+            }
+            info() {
+                return this.nombre + " va en la posicion " + this.posicion;
+            }
+            caminar() {
+                let camina = this.prot.prob();
+                if (camina <= 50) {
+                    this.posicion += 3;
+                } else if (camina <= 80) {
+                    this.posicion += 1;
+                } else
+                    this.posicion -= 6
+            }
+        }
+        class Liebre {
+            constructor(nombre) {
+                this.nombre = nombre;
+                this.posicion = 0;
+                this.prot = new Probabilidad();
+            }
+            info() {
+                return this.nombre + " va en la posicion " + this.posicion;
+            }
+            salta() {
+                let salta = this.prot.prob();
+                if (salta <= 35) {
+                    this.posicion += 1;
+                } else if (salta <= 55) {
+                    this.posicion += 0;
+                } else if (salta <= 75) {
+                    this.posicion += 9
+                } else if (salta <= 90) {
+                    this.posicion -= 2;
+                } else
+                    this.posicion -= 12;
+
+            }
+        }
+
+        let tortu = new Tortuga("juan");
+        let rabit = new Liebre("conter");
+        while (tortu.posicion < 100 && rabit.posicion < 100) {
+            tortu.caminar();
+            rabit.salta();
+            console.log(rabit.info());
+            console.log(tortu.info());
+        }
+        if (tortu.posicion >= 100 && rabit.posicion >= 100) {
+            console.log("Empate");
+        } else if (tortu.posicion >= 100) {
+            console.log("Gano la tortuja");
+        } else
+            console.log("Gano la Libre");
+    </script>
+</body>
+
+</html>
